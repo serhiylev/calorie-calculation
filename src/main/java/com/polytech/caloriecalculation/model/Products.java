@@ -5,15 +5,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @ToString
-@Table(name = "dishes")
-public class Dishes {
+@Table(name = "products")
+public class Products {
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
+    Set<User> users;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
+    Set<Ingredient> ingredients;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,10 +24,7 @@ public class Dishes {
     private String name;
     @Column(name = "type")
     private String type;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    Set<User> users;
-    @ManyToMany(fetch = FetchType.EAGER)
-    Set<Ingredient> ingredients;
+    @Column(name = "image")
+    private String image;
 }
 

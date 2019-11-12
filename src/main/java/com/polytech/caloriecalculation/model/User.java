@@ -24,10 +24,10 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_dishes",
+    @JoinTable(name = "users_products",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id")
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    List<Dishes> dishes;
+    List<Products> products;
 
 }

@@ -1,8 +1,8 @@
 package com.polytech.caloriecalculation.controller;
 
-import com.polytech.caloriecalculation.model.DishType;
-import com.polytech.caloriecalculation.model.Dishes;
-import com.polytech.caloriecalculation.service.DishService;
+import com.polytech.caloriecalculation.model.ProductType;
+import com.polytech.caloriecalculation.model.Products;
+import com.polytech.caloriecalculation.service.ProductsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,14 +11,16 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/products")
 public class ProductsController {
-    private final DishService dishService;
+    private final ProductsService productsService;
 
-    public ProductsController(DishService dishService) {
-        this.dishService = dishService;
+    public ProductsController(ProductsService productsService) {
+        this.productsService = productsService;
     }
 
     @GetMapping()
-    public List<Dishes> getProducts(@RequestParam String type) {
-        return dishService.getDishesByType(String.valueOf(DishType.valueOf(type)));
+    public List<Products> getProducts(@RequestParam String type) {
+        System.out.println(type);
+        return productsService.getProductsByType(String.valueOf(ProductType.getByName(type)));
+//        return productsService.getProductsByType(String.valueOf(ProductType.valueOf(type)));
     }
 }

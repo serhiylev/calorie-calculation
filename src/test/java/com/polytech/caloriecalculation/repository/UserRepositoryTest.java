@@ -14,7 +14,7 @@ public class UserRepositoryTest {
     UserRepository userRepository;
 
     @Autowired
-    DishesRepository dishesRepository;
+    ProductsRepository dishesRepository;
 
     @Test
     public void getAllUsersTest() {

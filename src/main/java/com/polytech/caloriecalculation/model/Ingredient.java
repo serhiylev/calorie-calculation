@@ -24,7 +24,7 @@ public class Ingredient {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "ingredients",
             joinColumns = @JoinColumn(name = "ingredient_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id")
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    List<Dishes> dishes;
+    List<Products> products;
 }
