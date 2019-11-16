@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,12 +17,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name" )
+
+    @Column(name = "name")
     private String name;
-    @Column(name = "email" )
+
+    @Column(name = "email")
     private String email;
-    @Column(name = "password" )
+
+    @Column(name = "login")
+    private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_products",
