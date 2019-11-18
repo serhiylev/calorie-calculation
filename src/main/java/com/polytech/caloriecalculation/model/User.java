@@ -1,8 +1,10 @@
 package com.polytech.caloriecalculation.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.codehaus.jackson.annotate.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -35,11 +37,13 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_products",
+    @JsonManagedReference("users-sets")
+    @ManyToMany
+    @JoinTable(
+            name = "user_sets",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    List<Products> products;
+            inverseJoinColumns = @JoinColumn(name = "set_id"))
+    Set<Sets> userSets;
+
 
 }

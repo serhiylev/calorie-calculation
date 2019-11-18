@@ -1,5 +1,7 @@
 package com.polytech.caloriecalculation.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,10 +15,6 @@ import java.util.Set;
 @ToString
 @Table(name = "products")
 public class Products {
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
-    Set<User> users;
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
-    Set<Ingredient> ingredients;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,5 +24,19 @@ public class Products {
     private String type;
     @Column(name = "image")
     private String image;
-}
+    @Column(name = "kcal")
+    private int kcal;
+    @Column(name = "proteins")
+    private int proteins;
+    @Column(name = "fats")
+    private int fats;
+    @Column(name = "carbohydrates")
+    private int carbohydrates;
 
+    @JsonBackReference(value = "p_s-product")
+    @OneToMany(mappedBy = "product")
+    Set<ProductsSets> productsSets;
+
+
+
+}
