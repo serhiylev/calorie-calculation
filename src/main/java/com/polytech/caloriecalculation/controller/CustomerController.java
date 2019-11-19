@@ -26,10 +26,4 @@ public class CustomerController {
         return userRepository.getOne(id);
     }
 
-    @Transactional
-    @DeleteMapping("deleteProduct/{setId}/{productId}")
-    public HttpStatus deleteProductFromSet(@PathVariable("setId") Integer setId, @PathVariable("productId") Integer productId) {
-        productsSetRepository.deleteProductsBySetsIdAndProductId(setId,productId);
-        return HttpStatus.OK;
-    }
 }
