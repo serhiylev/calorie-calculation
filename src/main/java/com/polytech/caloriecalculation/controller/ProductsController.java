@@ -45,10 +45,11 @@ public class ProductsController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     @Transactional
-    @DeleteMapping("deleteProduct/{setId}/{productId}")
-    public ResponseEntity<HttpStatus> deleteProductFromSet(@PathVariable("setId") Integer setId, @PathVariable("productId") Integer productId) {
-        productsSetRepository.deleteProductsBySetsIdAndProductId(setId, productId);
+    @DeleteMapping("deleteProduct/{productSetId}")
+    public ResponseEntity<HttpStatus> deleteProductFromSet(@PathVariable("productSetId") Integer productSetId) {
+        productsSetRepository.deleteProductsById(productSetId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

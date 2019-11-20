@@ -7,6 +7,6 @@ public interface ProductsSetRepository extends CrudRepository<ProductsSets, Inte
 
     ProductsSets save(ProductsSets productsSets);
 
-    void deleteProductsBySetsIdAndProductId(int setId, int productId);
+    void deleteProductsById(int productSetId);
 
 }
