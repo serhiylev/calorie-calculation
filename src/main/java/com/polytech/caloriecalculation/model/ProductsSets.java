@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class ProductsSets {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "grams")
@@ -21,14 +21,12 @@ public class ProductsSets {
 
     @JsonManagedReference(value = "p_s-product")
     @ManyToOne
-    @MapsId("product_id")
     @JoinColumn(name = "product_id")
-    Products product;
+    private Products product;
 
     @JsonBackReference(value = "sets-product_sets")
     @ManyToOne
-    @MapsId("set_id")
     @JoinColumn(name = "set_id")
-    Sets sets;
+    private Sets sets;
 
 }

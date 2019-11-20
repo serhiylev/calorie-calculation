@@ -1,13 +1,12 @@
 package com.polytech.caloriecalculation.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.codehaus.jackson.annotate.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -48,5 +47,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "set_id"))
     Set<Sets> userSets;
 
-
+//    @JsonManagedReference("user-s-user")
+//    @OneToMany(mappedBy = "user")
+//    Set<UserSets> userSets;
 }

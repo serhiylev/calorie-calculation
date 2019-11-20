@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductsRepository extends JpaRepository<Products, Integer> {
     List<Products> findAllByType(String type);
     List<Products> getAllByType(String type);
+    Products getOne(Integer integer);
 }

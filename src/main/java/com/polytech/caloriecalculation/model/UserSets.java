@@ -1,12 +1,12 @@
 //package com.polytech.caloriecalculation.model;
 //
+//import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 //import lombok.Getter;
 //import lombok.Setter;
 //
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.ManyToOne;
-//import javax.persistence.Table;
+//import javax.persistence.*;
 //
 //@Entity
 //@Getter
@@ -14,15 +14,19 @@
 //@Table(name = "user_sets")
 //public class UserSets {
 //
-//    @Column(name = "user_is")
-//    private int userId;
-//
-//    @Column(name = "set_id")
-//    private int setId;
-//
-//    @ManyToOne
-//    User user;
+//    @Id
+//    @JsonIgnore
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private int id;
 //
 //    @ManyToOne
-//    Sets set;
+//    @JsonManagedReference(value = "user-s-s")
+//    @JoinColumn(name = "set_id")
+//    private Sets sets;
+//
+//    @ManyToOne
+//    @JsonBackReference(value = "user-s-user")
+//    @JoinColumn(name = "user_id")
+//    private User user;
+//
 //}

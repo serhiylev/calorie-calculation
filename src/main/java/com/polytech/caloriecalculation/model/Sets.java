@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -28,10 +27,15 @@ public class Sets {
     private String description;
 
     @JsonBackReference("users-sets")
-    @ManyToMany(mappedBy = "userSets")
+    @ManyToMany(mappedBy = "userSets", fetch = FetchType.LAZY)
     Set<User> users;
+
+//    @JsonBackReference("user-s-s")
+//    @OneToMany(mappedBy = "sets")
+//    Set<UserSets> userSets;
 
     @JsonManagedReference("sets-product_sets")
     @OneToMany(mappedBy = "sets")
     Set<ProductsSets> productsDetails;
+
 }
